@@ -35,12 +35,17 @@ Defaults to "dups.txt" and writes the file to the path in --path
 
 KNOWN PROBLEMS AND ISSUES:
 Some files could be marked as duplicates when they are not.  This could be because some files will have many identical bytes at the top of the file but different bytes at the end.
-Deduper.py uses the first bunch of bytes (as well as the file size) to hash the file and compares hashes from that to determine if the file is a duplicate.
+Deduper.py uses the first bunch of bytes (as well as the file size) to hash the file and compares hashes from that to determine if the file is a duplicate.  
+The process could look at more information to eliminate this problem.
 
 This utility ignores the filename and hashes the first bunch of bytes of the file concatenated with the file size.  
 This is okay since duplicate file contents might not have the same file name.
 
 Always recurses down directories.  No way yet to control this yet.
+
+Uses the kludgey string '  !*!!*!  ' to seperate file paths.  The problem is that a file could have this string in its name causing the process to break the path in the wrong part
+when printing the duplication file at the end.  This won't affect finding potential duplicates though.
+This was used since I couldn't figure out how to hash a list of strings.  For some reason it wouldn't work.
 
 If the duplication hash grows to large for RAM, the process will crash without completing.  This could be fixed by writing to disc using the existing pickle mechanics.
 
@@ -51,3 +56,5 @@ If it can't read a file, it skips it.
 No graphical interface.
 
 Python must be installed on the system.  Non-executable file.
+
+
