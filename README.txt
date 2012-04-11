@@ -28,9 +28,9 @@ In the command line after the file name, the following parameters can be specifi
 A larger value means a lower likelihood of hash collisions and thus fewer false duplicates, but it will take longer to run.  The default is 100,000 bytes = 100 kb.
  --pickle This paramter periodically (every 1000 files) writes the hash table for the files.  Useful if the system crashes, then you have some information,
 but it does not affect the process.  The default is to turn this off.
- --pickle_file="pickle path and file name"  Sets the path and file name of the pickle file.  Defaults to "dups_pickle.dmp" and writes to --path
- --dup_file="dup path and file name"  Sets the location and file name of the duplicate file that is written at the end of the process
-Defaults to "dups.txt" and writes the file to the path in --path
+ --pickle_file="pickle path and file name"  Sets the path and file name of the pickle file.  Defaults to "dups_pickle.dmp" and defaults writing to the folder where the script is run from. 
+--dup_file="dup path and file name"  Sets the location and file name of the duplicate file that is written at the end of the process
+Defaults to "dups.txt" and defaults to writing the file to the folder where the script is run from.
 
 
 KNOWN PROBLEMS AND ISSUES:
@@ -41,7 +41,7 @@ The process could look at more information to eliminate this problem.
 This utility ignores the filename and hashes the first bunch of bytes of the file concatenated with the file size.  
 This is okay since duplicate file contents might not have the same file name.
 
-Always recurses down directories.  No way yet to control this yet.
+Always recurses down directories.  No way implemented yet to control this.
 
 Uses the kludgey string '  !*!!*!  ' to seperate file paths.  The problem is that a file could have this string in its name causing the process to break the path in the wrong part
 when printing the duplication file at the end.  This won't affect finding potential duplicates though.
@@ -56,5 +56,7 @@ If it can't read a file, it skips it.
 No graphical interface.
 
 Python must be installed on the system.  Non-executable file.
+
+Automatically overwrites the duplication file.
 
 
