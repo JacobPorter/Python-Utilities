@@ -5,7 +5,7 @@ import cPickle
 import os, sys, optparse
 
 '''
-Copyright 2012 Jacob Porter
+Jacob Porter
 Please attribute me if you use this file.
 '''
 
